@@ -43,11 +43,13 @@ public class DB {
     static String getName(String uid) throws Exception {
         Connection conn = null;
         String name = "";
+        PreparedStatement ps = null;
         try {
            conn = connect();
            String query = "select name from members where uid="+uid;
            Statement st = conn.createStatement();
            ResultSet res = st.executeQuery(query);
+           ResultSet res = st.executeQuery(ps);
            while(res.next()){
         	   name = res.getString("name");
            }
